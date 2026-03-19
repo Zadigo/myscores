@@ -1,0 +1,65 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "eslint",
+    "jsx-a11y",
+    "import",
+    "jsdoc",
+    "node",
+    "oxc",
+    "vitest",
+    "vue",
+    "typescript",
+    "promise"
+  ],
+  "categories": {
+    "style": "allow",
+    "correctness": "error",
+    "suspicious": "error",
+    "perf": "error",
+    "restriction": "error",
+    "nursery": "allow",
+    "pedantic": "allow"
+  },
+  "rules": {},
+  "settings": {
+    "jsx-a11y": {
+      "polymorphicPropName": "as",
+      "components": {},
+      "attributes": {}
+    },
+    "next": {
+      "rootDir": []
+    },
+    "react": {
+      "formComponents": [],
+      "linkComponents": [],
+      "version": "18.2.0",
+      "componentWrapperFunctions": []
+    },
+    "jsdoc": {
+      "ignorePrivate": false,
+      "ignoreInternal": false,
+      "ignoreReplacesDocs": true,
+      "overrideReplacesDocs": true,
+      "augmentsExtendsReplacesDocs": false,
+      "implementsReplacesDocs": false,
+      "exemptDestructuredRootsFromChecks": false,
+      "tagNamePreference": {}
+    },
+    "vitest": {
+      "typecheck": false
+    }
+  },
+  "env": {
+    "builtin": true
+  },
+  "globals": {
+    
+  },
+  "ignorePatterns": [],
+  "options": {
+    "typeAware": true,
+    "typeCheck": true
+  }
+}
