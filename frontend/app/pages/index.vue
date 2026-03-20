@@ -1,21 +1,24 @@
 <template>
   <section id="players" class="my-10">
-    {{ players }}
     <div class="space-y-2">
       <!-- Players -->
-      <base-player v-for="(_, idx) in players" :key="idx" :index="idx" />
+      <transition-group enter-active-class="transition-all ease-in-out duration-300" enter-from-class="opacity-0 scale-95" enter-to-class="opacity-100 scale-100" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
+        <lazy-base-player v-for="(player, idx) in sortedPlayers" :key="idx" :player="player" hydrate-on-idle />
+      </transition-group>
     </div>
 
     <!-- Update Player Modal -->
-    <lazy-modals-update-player hydrate-on-visible />
+    <lazy-modals-update-player hydrate-on-idle />
 
     <!-- Add Score Modal -->
-    <lazy-modals-add-score hydrate-on-visible />
+    <lazy-modals-add-score hydrate-on-idle />
 
     <!-- Updated Score Modal -->
-    <lazy-nuxt-modal v-model:open="showUpdatedScoreModal" hydrate-on-visible>
+    <lazy-nuxt-modal v-model:open="showUpdatedScoreModal" hydrate-on-idle>
       <template #body>
-        <nuxt-input v-if="isDefined(updatedScore)" v-model="updatedScore" type="number" />
+        <div v-if="isDefined(updatedScore)">
+          <nuxt-input v-model="updatedScore" type="number" />
+        </div>
       </template>
     </lazy-nuxt-modal>
   </section>
@@ -30,7 +33,7 @@ definePageMeta({
  * Players
  */
 
-const { players } = usePlayersComposable()
+const { sortedPlayers } = usePlayersComposable()
 
 /**
  * Score

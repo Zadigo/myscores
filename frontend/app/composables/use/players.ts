@@ -1,4 +1,5 @@
-import type { Empty, Nullable, Player } from '~/types'
+import type { Empty, Player } from '~/types'
+import { TransitionPresets, type UseTransitionOptions } from '@vueuse/core'
 import { faker } from '@faker-js/faker'
 
 export const usePlayersComposable = createGlobalState(() => {
@@ -14,28 +15,80 @@ export const usePlayersComposable = createGlobalState(() => {
     })
   }
 
-  const editedPlayer = ref<Nullable<Player>>(null)
-  const [isModalOpen, toggleModal] = useToggle()
+  const _player = ref<Empty<Player>>()
+  const [isEditionModalOpen, toggleEditionModal] = useToggle()
 
-  function editPlayer(player: Empty<Player>) {
-    if (isDefined(player)) {
-      editedPlayer.value = player
-      toggleModal()
-    }
+  function selectForEdition(player: Empty<Player>) {
+    _player.value = player
+    toggleEditionModal(true)
   }
 
-  function _getPlayer(index: number) {
-    return players.value[index]
-  }
-
-  const getPlayer = reactify(_getPlayer)
+  const sortDirection = ref<'asc' | 'desc'>('desc')
+  const sortedPlayers = ref<Player[]>([])
+  watchDebounced(players, () => {
+    sortedPlayers.value = players.value.sort((a, b) => {
+      if (sortDirection.value === 'asc') {
+        return a.score - b.score
+      } else {
+        return b.score - a.score
+      }
+    })
+  }, { debounce: 2000, immediate: true, deep: true })
 
   return {
     players,
-    editedPlayer,
-    isModalOpen,
-    getPlayer,
+    sortedPlayers,
+    editedPlayer: _player,
+    isEditionModalOpen,
+    sortDirection,
     createPlayer,
-    editPlayer
+    selectForEdition
+  }
+})
+
+export const useGlobalStatisticsComposble = createGlobalState(() => {
+  const { players } = usePlayersComposable()
+
+  const display = ref<'total' | 'average' | 'min' | 'max'>('total')
+
+  const _values = computed(() => players.value.map(player => player.score))
+  const _totalScore = useSum(_values)
+  const _averageScore = useAverage(_values)
+  const _minScore = useMin(_values)
+  const _maxScore = useMax(_values)
+
+  const options: UseTransitionOptions<number> = {
+    duration: 2000,
+    easing: TransitionPresets.easeInCubic,
+    delay: 900
+  }
+
+  const transitionTotalScore = useTransition(_totalScore, options)
+  const transitionAverageScore = useTransition(_averageScore, options)
+  const transitionMinScore = useTransition(_minScore, { ...options, delay: 1200 })
+  const transitionMaxScore = useTransition(_maxScore, { ...options, delay: 1500 })
+
+  const totalScore = computed(() => {
+    return transitionTotalScore.value.toFixed(0)
+  })
+
+  const averageScore = computed(() => {
+    return transitionAverageScore.value.toFixed(2)
+  })
+
+  const minScore = computed(() => {
+    return transitionMinScore.value.toFixed(0)
+  })
+
+  const maxScore = computed(() => {
+    return transitionMaxScore.value.toFixed(0)
+  })
+
+  return {
+    display,
+    totalScore,
+    averageScore,
+    minScore,
+    maxScore
   }
 })

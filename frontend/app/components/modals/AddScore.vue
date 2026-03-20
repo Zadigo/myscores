@@ -10,7 +10,7 @@
           <icon name="lucide:plus" />
         </nuxt-button>
 
-        <div v-for="increment in availableIncrements" :key="increment.value" class="p-5 bg-primary-400 dark:bg-slate-800 hover:bg-primary-500 dark:hover:bg-slate-700 cursor-pointer rounded-2xl transition-colors duration-300" @click="() => { incrementBy(updatedPlayer, increment.value) }">
+        <div v-for="increment in availableIncrements" :key="increment.value" class="p-5 bg-primary-400 dark:bg-slate-800 hover:bg-primary-500 dark:hover:bg-slate-700 cursor-pointer rounded-2xl transition-colors duration-300" @click="() => { playSound(() => incrementBy(updatedPlayer, increment.value)) }">
           <div class="font-bold text-4xl flex items-center gap-2">
             <icon v-if="isPositive" name="lucide:plus" />
             <icon v-else name="lucide:minus" />
@@ -27,4 +27,10 @@
 
 <script setup lang="ts">
 const { updatedPlayer, isPositive, availableIncrements, showScoreModal, incrementBy } = usePlayerScoreUpdateComposable()
+
+/**
+ * Sound
+ */
+
+const { playSound } = useSoundEffectComposable('/click.mp3')
 </script>

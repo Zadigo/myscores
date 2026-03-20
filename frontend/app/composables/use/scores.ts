@@ -46,6 +46,7 @@ export const usePlayerScoreUpdateComposable = createGlobalState(() => {
     } else {
       action(player, score, false)
     }
+    toggleScoreModal()
   }
 
   function action(player: Empty<Player>, score: Undefineable<number>, isAddition: boolean) {

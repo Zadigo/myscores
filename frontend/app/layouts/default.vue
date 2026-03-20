@@ -32,23 +32,9 @@
     </nav>
 
     <div class="grid grid-cols-12 gap-2 my-5">
-      <div class="col-span-2 p-5 rounded-2xl bg-success-700">
-        <h2 class="flex justify-center items-center">
-          <icon name="lucide:sigma" class="text-2xl font-semibold" />
-          <span class="text-5xl font-bold">
-            15
-          </span>
-        </h2>
-      </div>
-
-      <div class="col-span-2 p-5 rounded-2xl bg-success-700">
-        <h2 class="flex justify-center items-center">
-          <icon name="lucide:ampersand" class="text-2xl font-semibold" />
-          <span class="text-5xl font-bold">
-            15
-          </span>
-        </h2>
-      </div>
+      <statistics-card :total-score="totalScore" class="col-span-4" />
+      <statistics-card :total-score="averageScore" class="col-span-4" />
+      <statistics-card :total-score="minScore" class="col-span-4" />
     </div>
 
     <main>
@@ -100,4 +86,10 @@ const toggleSettingsModal = useToggle(showSettingsModal)
  */
 
 const { createPlayer } = usePlayersComposable()
+
+/**
+ * Statistics
+ */
+
+const { totalScore, averageScore, minScore } = useGlobalStatisticsComposble()
 </script>

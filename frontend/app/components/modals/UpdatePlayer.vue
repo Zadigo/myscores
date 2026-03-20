@@ -1,17 +1,17 @@
 <template>
-  <nuxt-modal v-model:open="isModalOpen" hydrate-on-visible>
+  <nuxt-modal v-model:open="isEditionModalOpen">
     <template #body>
       <div v-if="isDefined(editedPlayer)">
-        <nuxt-input v-model="editedPlayer.name" placeholder="Nom du joueur" />
-        <nuxt-input v-model="editedPlayer.increment" type="number" min="0" placeholder="Incrémentation" />
-        <nuxt-input v-model="editedPlayer.resetValue" type="number" min="0" placeholder="Valeur de réinitialisation" />
+        <lazy-nuxt-input v-model="editedPlayer.name" :hydrate-when="isEditionModalOpen" placeholder="Nom du joueur" />
+        <lazy-nuxt-input v-model="editedPlayer.increment" type="number" min="0" :hydrate-when="isEditionModalOpen" placeholder="Incrémentation" />
+        <lazy-nuxt-input v-model="editedPlayer.resetValue" type="number" min="0" :hydrate-when="isEditionModalOpen" placeholder="Valeur de réinitialisation" />
       </div>
     </template>
 
     <template #footer>
-      <nuxt-button color="primary" @click="() => { isModalOpen = false }">
+      <lazy-nuxt-button :hydrate-when="isEditionModalOpen" color="primary" @click="() => { isEditionModalOpen = false }">
         Enregistrer
-      </nuxt-button>
+      </lazy-nuxt-button>
     </template>
   </nuxt-modal>
 </template>
@@ -21,5 +21,5 @@
  * Players
  */
 
-const { isModalOpen, editedPlayer } = usePlayersComposable()
+const { isEditionModalOpen, editedPlayer } = usePlayersComposable()
 </script>
