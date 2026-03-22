@@ -13,9 +13,7 @@
 
     <!-- Score -->
     <div class="flex justify-center items-center">
-      <div class="p-5 bg-primary-500 text-primary-50 h-30 w-30 text-3xl flex justify-center items-center cursor-pointer rounded-lg" @click.passive="() => { playSound(() => action(player, player?.increment, false)) }">
-        <icon name="lucide:minus" />
-      </div>
+      <base-player-increment :color="player.color" icon-name="lucide:minus" @increment="() => { playSound(() => action(player, player?.increment, false)) }" />
 
       <!-- Score Display -->
       <div class="p-5 h-30 rounded-lg text-primary-50 mx-1 w-60 text-center bg-primary-400/20 dark:bg-slate-800/20 hover:bg-primary-500/20 dark:hover:bg-slate-500/30 cursor-pointer transition-colors duration-300 flex justify-center items-center" @click.passive="() => { selectPlayerForUpdate(player) }">
@@ -24,9 +22,7 @@
         </h2>
       </div>
 
-      <div class="p-5 bg-primary-500 text-primary-50 h-30 w-30 text-3xl flex justify-center items-center cursor-pointer rounded-lg" @click.passive="() => { playSound(() => action(player, player?.increment, true)) }">
-        <icon name="lucide:plus" />
-      </div>
+      <base-player-increment :color="player.color" icon-name="lucide:plus" @increment="() => { playSound(() => action(player, player?.increment, true)) }" />
     </div>
   </article>
 </template>
