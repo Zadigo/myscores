@@ -1,9 +1,9 @@
 <template>
   <section id="site" class="max-w-5xl px-10 py-5 mx-auto">
     <!-- Navigation -->
-    <nav class="rounded-full w-full h-auto bg-primary-500 dark:bg-primary-700 p-2">
+    <nav class="rounded-full w-full h-auto bg-primary-600/80 backdrop-blur-3xl dark:bg-primary-700 p-2">
       <div class="flex justify-between w-full items-center">
-        <ul class="w-full inline-flex justify-start gap-5">
+        <ul class="w-full inline-flex justify-start gap-5 text-primary-50">
           <li class="px-5 py-2 rounded-2xl bg-primary-700 dark:bg-primary-900 min-w-20 flex justify-center items-center">
             <nuxt-link to="/" class="block">
               <icon name="lucide:list" />
@@ -92,4 +92,12 @@ const { createPlayer } = usePlayersComposable()
  */
 
 const { totalScore, averageScore, minScore } = useGlobalStatisticsComposble()
+
+/**
+ * Background
+ */
+
+onMounted(() => {
+  document.body.classList.add('bg-primary-500', 'dark:bg-primary-900')
+})
 </script>

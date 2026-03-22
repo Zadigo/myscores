@@ -3,7 +3,8 @@ import { TransitionPresets, type UseTransitionOptions } from '@vueuse/core'
 import { faker } from '@faker-js/faker'
 
 export const usePlayersComposable = createGlobalState(() => {
-  const players = ref<Player[]>([])
+  // const players = ref<Player[]>([])
+  const players = useSessionStorage<Player[]>('players', [])
 
   function createPlayer() {
     players.value.push({

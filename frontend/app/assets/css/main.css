@@ -1,18 +1,31 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@theme static {
-  --font-sans: 'Public Sans', sans-serif;
+@theme {
+}
 
-  --color-green-50: #EFFDF5;
-  --color-green-100: #D9FBE8;
-  --color-green-200: #B3F5D1;
-  --color-green-300: #75EDAE;
-  --color-green-400: #00DC82;
-  --color-green-500: #00C16A;
-  --color-green-600: #00A155;
-  --color-green-700: #007F45;
-  --color-green-800: #016538;
-  --color-green-900: #0A5331;
-  --color-green-950: #052E16;
+@theme static {
+  --font-title: 'Zalando Sans', sans-serif;
+  --font-sans: 'JetBrains Mono', monospace;
+
+  --color-green-50: #e7eef4;
+  --color-green-100: #b7ccdf;
+  --color-green-200: #9fbbd4;
+  --color-green-300: #87aac9;
+  --color-green-400: #5787b3;
+  --color-green-500: #0f5493;
+  --color-green-600: #0c4376;
+  --color-green-700: #0b3b67;
+  --color-green-800: #082a4a;
+  --color-green-900: #05192c;
+  --color-green-950: #02080f;
+
+  --color-player-variant-one-500: #a4abbd;
+  --color-player-variant-two-500: #707788;
+  --color-player-variant-three-500: #8d334d;
+  --color-player-variant-four-500: #c6667e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
 }

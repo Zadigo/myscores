@@ -34,6 +34,17 @@ export default defineNuxtConfig({
 
   ui: {
     prefix: 'nuxt'
+  },
+  
+  fonts: {
+    families: [
+      {
+        name: 'Zalando Sans'
+      },
+      {
+        name: 'JetBrains Mono'
+      }
+    ]
   }
 })
 
