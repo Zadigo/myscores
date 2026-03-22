@@ -20,6 +20,13 @@
   --color-green-900: #05192c;
   --color-green-950: #02080f;
 
+  --color-statistic-50: #f4ebed;
+  --color-statistic-100: #ddc2ca;
+  --color-statistic-200: #bb8594;
+  --color-statistic-300: #a45c71;
+  --color-statistic-400: #98475f;
+  --color-statistic-500: #8d334d;
+
   --color-player-variant-one-500: #a4abbd;
   --color-player-variant-two-500: #707788;
   --color-player-variant-three-500: #8d334d;
@@ -28,4 +35,20 @@
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-title);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease-in-out, transform 0.8s ease-in-out;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
+  filter: blur(2px);
+}
+
+.fade-enter-to, .fade-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
 }

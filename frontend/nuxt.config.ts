@@ -45,6 +45,13 @@ export default defineNuxtConfig({
         name: 'JetBrains Mono'
       }
     ]
+  },
+
+  app: {
+    pageTransition: { 
+      name: 'fade', 
+      mode: 'out-in'
+    }
   }
 })
 

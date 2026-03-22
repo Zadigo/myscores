@@ -1,45 +1,26 @@
 <template>
   <section id="site" class="max-w-5xl px-10 py-5 mx-auto">
     <!-- Navigation -->
-    <nav class="rounded-full w-full h-auto bg-primary-600/80 backdrop-blur-3xl dark:bg-primary-700 p-2">
-      <div class="flex justify-between w-full items-center">
-        <ul class="w-full inline-flex justify-start gap-5 text-primary-50">
-          <li class="px-5 py-2 rounded-2xl bg-primary-700 dark:bg-primary-900 min-w-20 flex justify-center items-center">
-            <nuxt-link to="/" class="block">
-              <icon name="lucide:list" />
-            </nuxt-link>
-          </li>
-        </ul>
-
-        <ul class="w-full inline-flex justify-start gap-2">
-          <li>
-            <nuxt-button @click="() => { createPlayer() }">
-              <icon name="lucide:plus" />
-            </nuxt-button>
-          </li>
-          <li>
-            <nuxt-button>
-              <icon name="lucide:clock-fading" />
-            </nuxt-button>
-          </li>
-          <li>
-            <nuxt-button @click="() => { toggleSettingsModal() }">
-              <icon name="lucide:cog" />
-            </nuxt-button>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="grid grid-cols-12 gap-2 my-5">
-      <statistics-card :total-score="totalScore" class="col-span-4" />
-      <statistics-card :total-score="averageScore" class="col-span-4" />
-      <statistics-card :total-score="minScore" class="col-span-4" />
-    </div>
+    <base-navbar />
 
     <main>
       <slot />
     </main>
+
+    <!-- Create Ranking -->
+    <lazy-nuxt-modal v-model:open="showCreateRanking" hydrate-on-visible>
+      <template #body>
+        <nuxt-form-field label="Name" required>
+          <nuxt-input v-model.trim="gameName" />
+        </nuxt-form-field>
+      </template>
+
+      <template #footer>
+        <nuxt-button @click="() => { create(players) }">
+          Créer
+        </nuxt-button>
+      </template>
+    </lazy-nuxt-modal>
 
     <!-- Settings -->
     <lazy-nuxt-modal v-model:open="showSettingsModal" hydrate-on-visible>
@@ -79,19 +60,6 @@
 
 <script setup lang="ts">
 const showSettingsModal = useState<boolean>('settingsModal')
-const toggleSettingsModal = useToggle(showSettingsModal)
-
-/**
- * Players
- */
-
-const { createPlayer } = usePlayersComposable()
-
-/**
- * Statistics
- */
-
-const { totalScore, averageScore, minScore } = useGlobalStatisticsComposble()
 
 /**
  * Background
@@ -100,4 +68,11 @@ const { totalScore, averageScore, minScore } = useGlobalStatisticsComposble()
 onMounted(() => {
   document.body.classList.add('bg-primary-500', 'dark:bg-primary-900')
 })
+
+/**
+ * Ranking
+ */
+
+const { players } = usePlayersComposable()
+const { create, gameName, showCreateRanking } = useRankingComposable()
 </script>
