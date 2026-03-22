@@ -1,7 +1,7 @@
 <template>
-  <article v-if="isDefined(player)" class="px-10 py-5 rounded-2xl bg-info-400 dark:bg-info-900">
+  <article v-if="isDefined(player)" class="px-10 py-5 rounded-2xl" :style="{ backgroundColor: `var(--color-player-variant-${player.color}-500)` }">
     <!-- Player -->
-    <div id="player-info" class="flex justify-center items-center gap-5 mb-5 bg-primary-500/20 p-5 rounded-lg">
+    <div id="player-info" :class="`bg-player-variant-${player.color}-500`" class="flex justify-center items-center gap-5 mb-5 p-5 rounded-lg">
       <h2 class="font-semibold text-center text-2xl">
         {{ player.name }}
       </h2>

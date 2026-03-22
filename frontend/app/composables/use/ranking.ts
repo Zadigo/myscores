@@ -53,6 +53,10 @@ export const useRankingComposable = createGlobalState(() => {
     gameName.value = ''
   }
 
+  function select(index: number) {
+    selectedRankingIndex.value = index
+  }
+
   return {
     ranking,
     showCreateRanking,
@@ -60,6 +64,7 @@ export const useRankingComposable = createGlobalState(() => {
     selectedRanking,
     selectedRankingTableRows,
     gameNames,
+    select,
     create,
     toggleShowCreateRanking
   }

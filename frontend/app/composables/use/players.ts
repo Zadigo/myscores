@@ -10,7 +10,7 @@ export const usePlayersComposable = createGlobalState(() => {
     players.value.push({
       name: faker.person.firstName(),
       score: 0,
-      color: null,
+      color: 'one',
       increment: 1,
       resetValue: 0
     })

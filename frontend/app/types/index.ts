@@ -4,10 +4,12 @@ export type Undefineable<T> = T | undefined
 
 export type Empty<T> = T | null | undefined
 
+export type ColorVariant = 'one' | 'two' | 'three' | 'four'
+
 export type Player = {
   name: string
   score: number
-  color: Nullable<string>
+  color: ColorVariant
   increment: number
   resetValue: number
 }
