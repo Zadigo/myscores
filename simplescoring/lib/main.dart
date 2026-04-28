@@ -11,7 +11,7 @@ void main() {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  // Define the routes for the application
+  // Define the routes
   Map<String, Widget Function(BuildContext)> get _routes => {
     '/home': (context) => const IndexPage(),
     '/home/edit': (context) => const EditPage(),
@@ -19,17 +19,24 @@ class MainApp extends StatelessWidget {
     '/settings': (context) => const SettingsPage(),
   };
 
-  // Define the global theme for the application
-  // ThemeData get _theme => 
-
   @override
   Widget build(BuildContext context) {
     final String title = 'Simple Scoring';
+
+    // Color scheme
+    final ColorScheme colorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.blue,
+      brightness: Brightness.light,
+    );
 
     return MaterialApp(
       title: title,
       home: const IndexPage(),
       routes: _routes,
+      theme: ThemeData(
+        colorScheme: colorScheme,
+        useMaterial3: true,
+      ),
     );
   }
 }
