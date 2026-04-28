@@ -27,6 +27,10 @@ class MainApp extends StatelessWidget {
     '/settings': (context) => const SettingsPage(),
   };
 
+  void _onTap(int index) {
+    print(index);
+  }
+
   @override
   Widget build(BuildContext context) {
     final String title = 'Simple Scoring';
@@ -45,7 +49,26 @@ class MainApp extends StatelessWidget {
 
     return MaterialApp(
       title: title,
-      home: const IndexPage(),
+      home: Scaffold(
+        body: _routes['/rankings']!(context),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.leaderboard),
+              label: 'Rankings',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: 'Settings',
+            ),
+          ],
+          onTap: _onTap,
+        ),
+      ),
       routes: _routes,
       theme: ThemeData(
         colorScheme: colorScheme,
