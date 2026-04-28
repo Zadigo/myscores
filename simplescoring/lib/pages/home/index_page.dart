@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:simplescoring/providers/scores_notifier.dart';
 import 'package:simplescoring/utils/players/player_score.dart';
 
 class IndexPage extends StatelessWidget {
@@ -6,12 +8,16 @@ class IndexPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    final List items = Provider.of<ScoresNotifier>(context).allScores;
+
+    print(items);
+
+    return ListView.builder(
       padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-      children: [
-        for (int i = 0; i < 20; i++)
-        PlayerScore()
-      ],
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        return PlayerScore();
+      },
     );
   }
 }

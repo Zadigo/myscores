@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 
 class ScoresNotifier extends ChangeNotifier {
   // List of scores
-  List<Map<String, dynamic>> scores = [];
+  List<Map<String, dynamic>> scores = [
+    {"name": "Player 1", "score": 0},
+    {"name": "Player 2", "score": 0},
+    {"name": "Player 3", "score": 0},
+  ];
 
   // Getter for scores
   List<Map<String, dynamic>> get allScores => scores;

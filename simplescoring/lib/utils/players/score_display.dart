@@ -10,9 +10,20 @@ class ScoreDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '$score',
-      style: Theme.of(context).textTheme.headlineMedium,
+    final ThemeData theme = Theme.of(context);
+
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.primaryColor,
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Text(
+          '$score',
+          style: TextStyle(fontSize: 50, fontWeight: FontWeight.w800),
+        ),
+      ),
     );
   }
 }

@@ -50,6 +50,10 @@ class MainApp extends StatelessWidget {
     //   fontFamily: GoogleFonts.manrope().fontFamily,
     // );
 
+    final List items = Provider.of<ScoresNotifier>(context).allScores;
+
+    print(items);
+
     return MaterialApp(
       title: title,
       home: Scaffold(
