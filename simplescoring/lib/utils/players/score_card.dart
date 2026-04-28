@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:simplescoring/models/player.dart';
+import 'package:simplescoring/providers/scores_cubit.dart';
 import 'package:simplescoring/utils/players/change_score_button.dart';
 import 'package:simplescoring/utils/players/score_display.dart';
 
 class ScoreCard extends StatelessWidget {
-  const ScoreCard({super.key});
+  final Player player;
+
+  const ScoreCard({
+    super.key, 
+    required this.player
+  });
 
   void _proxyIncrement(BuildContext context) {
-    
+    ScoresCubit().increment(player.name);
   }
 
   void _proxyDecrement(BuildContext context) {
-    
+    ScoresCubit().decrement(player.name);
   }
 
   @override
@@ -36,6 +43,7 @@ class ScoreCard extends StatelessWidget {
               direction: Axis.horizontal,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // Decrement button
                 Flexible(
                   flex: 1,
                   child: ChangeScoreButton(
@@ -43,10 +51,14 @@ class ScoreCard extends StatelessWidget {
                     icon: Icons.remove,
                   ),
                 ),
+                
+                // Score display
                 Flexible(
                   flex: 2,
-                  child: ScoreDisplay(score: 20),
+                  child: ScoreDisplay(score: player.score),
                 ),
+
+                // Increment button
                 Flexible(
                   flex: 1,
                   child: ChangeScoreButton(

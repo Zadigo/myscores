@@ -57,6 +57,9 @@ class ScoresCubit extends Cubit<List<Player>> {
   // Method to increment a player's score
   void increment(String playerName) {
     final player = getPlayer(playerName);
+
+    print(player?.toJson());
+
     if (player != null && player.score != -1) {
       player.score++;
       emit(List.from(state));
@@ -66,6 +69,7 @@ class ScoresCubit extends Cubit<List<Player>> {
   // Method to decrement a player's score
   void decrement(String playerName) {
     final player = getPlayer(playerName);
+
     if (player != null && player.score != -1) {
       player.score--;
       emit(List.from(state));

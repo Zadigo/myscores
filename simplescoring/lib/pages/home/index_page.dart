@@ -13,7 +13,7 @@ class IndexPage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       itemCount: scores.state.length,
       itemBuilder: (context, index) {
-        return ScoreCard();
+        return ScoreCard(player: scores.state[index],);
       },
     );
   }
