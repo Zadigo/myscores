@@ -20,13 +20,15 @@ class ScoreDisplay extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
+        width: 170,
         decoration: BoxDecoration(
-          color: theme.primaryColor,
+          color: theme.primaryColor.withAlpha(700),
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(
           '$score',
-          style: TextStyle(fontSize: 50, fontWeight: FontWeight.w800),
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 50, fontWeight: FontWeight.w800, color: theme.primaryColorLight),
         ),
       ),
     );

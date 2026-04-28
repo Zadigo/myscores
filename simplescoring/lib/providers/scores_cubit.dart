@@ -85,4 +85,13 @@ class ScoresCubit extends Cubit<List<Player>> {
       log('ScoresCubit decrement: player = ${player.name}, score = ${player.score}');
     }
   }
+
+  void editPlayerName(String oldName, String newName) {
+    final player = getPlayerByName(oldName);
+
+    if (player != null) {
+      player.name = newName;
+      emit(List.from(state));
+    }
+  }
 }

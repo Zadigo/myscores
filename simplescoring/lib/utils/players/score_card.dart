@@ -7,10 +7,12 @@ import 'package:simplescoring/utils/players/score_display.dart';
 
 class ScoreCard extends StatelessWidget {
   final Player? player;
+  final void Function(BuildContext)? onEdit;
 
   const ScoreCard({
     super.key, 
-    required this.player
+    required this.player,
+    required this.onEdit,
   });
 
   @override
@@ -32,14 +34,18 @@ class ScoreCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // Player name
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,      
                 children: [
-                  Text(player?.name ?? ''),
+                  Text(
+                    player?.name ?? '', 
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+                  ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () => onEdit?.call(context),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: theme.primaryColor.withAlpha(40),
                       shadowColor: Colors.transparent,
@@ -49,6 +55,8 @@ class ScoreCard extends StatelessWidget {
                 ],
               ),
             ),
+
+            // Actions
             Flex(
               direction: Axis.horizontal,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
