@@ -17,8 +17,8 @@ class ChangeScoreButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: theme.primaryColor,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        backgroundColor: theme.primaryColor.withAlpha(90),
+        shadowColor: Colors.transparent,
       ),
       child: Icon(icon, color: theme.primaryColorLight),
     );

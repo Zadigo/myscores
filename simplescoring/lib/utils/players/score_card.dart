@@ -32,9 +32,22 @@ class ScoreCard extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              alignment: Alignment.centerRight,
-              child: ElevatedButton(onPressed: () {}, child: Icon(Icons.edit)),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,      
+                children: [
+                  Text(player?.name ?? ''),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: theme.primaryColor.withAlpha(40),
+                      shadowColor: Colors.transparent,
+                    ),
+                    child: Icon(Icons.edit),
+                  ),
+                ],
+              ),
             ),
             Flex(
               direction: Axis.horizontal,
