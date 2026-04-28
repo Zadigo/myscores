@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:simplescoring/providers/scores_notifier.dart';
 import 'package:simplescoring/utils/players/change_score_button.dart';
 import 'package:simplescoring/utils/players/score_display.dart';
 
@@ -8,17 +6,11 @@ class PlayerScore extends StatelessWidget {
   const PlayerScore({super.key});
 
   void _proxyIncrement(BuildContext context) {
-    Provider.of<ScoresNotifier>(
-      context,
-      listen: false,
-    ).increment("Some player name");
+    
   }
 
   void _proxyDecrement(BuildContext context) {
-    Provider.of<ScoresNotifier>(
-      context,
-      listen: false,
-    ).decrement("Some player name");
+    
   }
 
   @override

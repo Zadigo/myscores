@@ -4,16 +4,9 @@ import 'package:simplescoring/pages/home/index_page.dart';
 import 'package:simplescoring/pages/home/edit_page.dart';
 import 'package:simplescoring/pages/rankings.dart';
 import 'package:simplescoring/pages/settings.dart';
-import 'package:simplescoring/providers/scores_notifier.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => ScoresNotifier(),
-      child: const MainApp(),
-    )
-  );
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -28,7 +21,7 @@ class MainApp extends StatelessWidget {
   };
 
   void _onTap(int index) {
-    print(index);
+    
   }
 
   @override
@@ -49,10 +42,6 @@ class MainApp extends StatelessWidget {
     // ThemeData.light().textTheme.apply(
     //   fontFamily: GoogleFonts.manrope().fontFamily,
     // );
-
-    final List items = Provider.of<ScoresNotifier>(context).allScores;
-
-    print(items);
 
     return MaterialApp(
       title: title,
