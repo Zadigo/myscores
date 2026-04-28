@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:simplescoring/models/player.dart';
 
@@ -62,7 +64,7 @@ class ScoresCubit extends Cubit<List<Player>> {
     if (player != null) {
       player.score++;
       emit(List.from(state));
-      print(List.from(state).map((el) => el.toJson()));
+      log('ScoresCubit increment: player = ${player.name}, score = ${player.score}');
     }
   }
 
@@ -73,6 +75,7 @@ class ScoresCubit extends Cubit<List<Player>> {
     if (player != null) {
       player.score--;
       emit(List.from(state));
+      log('ScoresCubit decrement: player = ${player.name}, score = ${player.score}');
     }
   }
 }

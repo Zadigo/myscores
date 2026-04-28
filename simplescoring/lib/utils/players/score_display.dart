@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class ScoreDisplay extends StatelessWidget {
@@ -12,6 +14,8 @@ class ScoreDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     // Theme
     final ThemeData theme = Theme.of(context);
+
+    log('ScoreDisplay build: score = $score');
 
     return Padding(
       padding: const EdgeInsets.all(10.0),
