@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:simplescoring/pages/home/index_page.dart';
 import 'package:simplescoring/pages/home/edit_page.dart';
 import 'package:simplescoring/pages/rankings.dart';
 import 'package:simplescoring/pages/settings.dart';
+import 'package:simplescoring/providers/scores_cubit.dart';
 
 void main() {
   runApp(const MainApp());
@@ -43,30 +45,36 @@ class MainApp extends StatelessWidget {
     //   fontFamily: GoogleFonts.manrope().fontFamily,
     // );
 
+    // State
+    final scoresCubit = ScoresCubit();
+
     return MaterialApp(
       title: title,
-      home: Scaffold(
-        body: _routes['/home']!(context),
-        appBar: AppBar(
-          leading: Icon(Icons.sports_score),
-          backgroundColor: colorScheme.primary.withAlpha(10),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home'
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.leaderboard),
-              label: 'Rankings',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: 'Settings',
-            ),
-          ],
-          onTap: _onTap,
+      home: BlocProvider<ScoresCubit>(
+        create: (context) => scoresCubit,
+        child: Scaffold(
+          body: _routes['/home']!(context),
+          appBar: AppBar(
+            leading: Icon(Icons.sports_score),
+            backgroundColor: colorScheme.primary.withAlpha(10),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'Home'
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.leaderboard),
+                label: 'Rankings',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.settings),
+                label: 'Settings',
+              ),
+            ],
+            onTap: _onTap,
+          ),
         ),
       ),
       routes: _routes,

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:simplescoring/utils/players/player_score.dart';
+import 'package:simplescoring/providers/scores_cubit.dart';
+import 'package:simplescoring/utils/players/score_card.dart';
 
 class IndexPage extends StatelessWidget {
   const IndexPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List items = [];
+    final scores = ScoresCubit();
 
     return ListView.builder(
       padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
-      itemCount: items.length,
+      itemCount: scores.state.length,
       itemBuilder: (context, index) {
-        return PlayerScore();
+        return ScoreCard();
       },
     );
   }

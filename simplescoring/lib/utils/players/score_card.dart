@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:simplescoring/utils/players/change_score_button.dart';
 import 'package:simplescoring/utils/players/score_display.dart';
 
-class PlayerScore extends StatelessWidget {
-  const PlayerScore({super.key});
+class ScoreCard extends StatelessWidget {
+  const ScoreCard({super.key});
 
   void _proxyIncrement(BuildContext context) {
     
