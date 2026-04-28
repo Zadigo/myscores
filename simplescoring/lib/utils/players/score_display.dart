@@ -10,6 +10,7 @@ class ScoreDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Theme
     final ThemeData theme = Theme.of(context);
 
     return Padding(
