@@ -5,9 +5,9 @@ import 'package:simplescoring/models/player.dart';
 
 class ScoresCubit extends Cubit<List<Player>> {
   ScoresCubit(): super([
-    Player(name: "Player 1", score: 0),
-    Player(name: "Player 2", score: 0),
-    Player(name: "Player 3", score: 0),
+    // Player(name: "Player 1", score: 0),
+    // Player(name: "Player 2", score: 0),
+    // Player(name: "Player 3", score: 0),
   ]);
 
   @override
@@ -35,8 +35,16 @@ class ScoresCubit extends Cubit<List<Player>> {
   }
 
   // Method to add a new player
-  void addPlayer(String playerName) {
-    state.add(Player(name: playerName, score: 0));
+  void addPlayer() {
+    const playerName = "New Player";
+    final newPlayer = Player(name: playerName, score: 0);
+
+    log('ScoresCubit addPlayer: playerName = $playerName');
+    
+    log("Current state $state");
+    state.add(newPlayer);
+    log("Current state $state");
+
     emit(List.from(state));
   }
 
