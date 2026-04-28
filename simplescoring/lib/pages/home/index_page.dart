@@ -4,18 +4,14 @@ import 'package:simplescoring/utils/players/player_score.dart';
 class IndexPage extends StatelessWidget {
   const IndexPage({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          for (int i = 0; i < 5; i++)
-          PlayerScore()
-        ],
-      )
+    return ListView(
+      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+      children: [
+        for (int i = 0; i < 20; i++)
+        PlayerScore()
+      ],
     );
   }
 }

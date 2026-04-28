@@ -54,6 +54,10 @@ class MainApp extends StatelessWidget {
       title: title,
       home: Scaffold(
         body: _routes['/home']!(context),
+        appBar: AppBar(
+          leading: Icon(Icons.sports_score),
+          backgroundColor: colorScheme.primary.withAlpha(10),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
