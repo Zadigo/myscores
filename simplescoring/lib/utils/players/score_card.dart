@@ -12,7 +12,7 @@ class ScoreCard extends StatelessWidget {
     super.key, 
     required this.player
   });
-  
+
   @override
   Widget build(BuildContext context) {
     // Theme
