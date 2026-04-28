@@ -3,9 +3,16 @@ import 'package:simplescoring/pages/home/index_page.dart';
 import 'package:simplescoring/pages/home/edit_page.dart';
 import 'package:simplescoring/pages/rankings.dart';
 import 'package:simplescoring/pages/settings.dart';
+import 'package:simplescoring/providers/scores_notifier.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ScoresNotifier(),
+      child: const MainApp(),
+    )
+  );
 }
 
 class MainApp extends StatelessWidget {
