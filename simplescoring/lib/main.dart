@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:simplescoring/pages/home/index_page.dart';
 import 'package:simplescoring/pages/home/edit_page.dart';
 import 'package:simplescoring/pages/rankings.dart';
@@ -36,12 +37,19 @@ class MainApp extends StatelessWidget {
       brightness: Brightness.light,
     );
 
+    // Text theme
+    final TextTheme textTheme = GoogleFonts.manropeTextTheme();
+    // ThemeData.light().textTheme.apply(
+    //   fontFamily: GoogleFonts.manrope().fontFamily,
+    // );
+
     return MaterialApp(
       title: title,
       home: const IndexPage(),
       routes: _routes,
       theme: ThemeData(
         colorScheme: colorScheme,
+        textTheme: textTheme,
         useMaterial3: true,
       ),
     );
