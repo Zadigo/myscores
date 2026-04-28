@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 
 class TodoTile extends StatelessWidget {
-  const TodoTile({super.key});
+  final String taskName;
+  final bool taskCompleted;
+  final Function(bool?)? onChanged;
 
-  final bool isChecked = false;
-
-  void selectCheckBox(bool? value) {
-    
-  }
+  const TodoTile({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,24 +18,26 @@ class TodoTile extends StatelessWidget {
     final ColorScheme colorScheme = theme.colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 30),
+      padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
       child: Container(
         decoration: BoxDecoration(
-          color: colorScheme.surfaceDim,
-          borderRadius: BorderRadius.circular(15)
+          color: taskCompleted
+              ? colorScheme.surfaceContainerHigh
+              : colorScheme.surfaceDim,
+          borderRadius: BorderRadius.circular(15),
         ),
         child: Row(
           children: [
-            Checkbox(
-              value: isChecked, 
-              onChanged: selectCheckBox
-            ),
+            Checkbox(value: taskCompleted, onChanged: onChanged),
             Padding(
               padding: const EdgeInsets.all(25.0),
-              child: const Text(
-                "Todo Item", 
+              child: Text(
+                taskName,
                 style: TextStyle(
-                  fontSize: 18
+                  fontSize: 18,
+                  decoration: taskCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
                 ),
               ),
             ),
