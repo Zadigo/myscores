@@ -21,10 +21,17 @@ class ScoresCubit extends Cubit<List<Player>> {
   }
 
   // Method to get a player's score by name
-  Player? getPlayer(String playerName) {
+  Player? getPlayerByName(String playerName) {
     return state.firstWhere((element) {
       return element.name == playerName;
     }, orElse: () => Player(name: playerName, score: -1));
+  }
+
+  Player? getPlayerByIndex(int index) {
+    if (index >= 0 && index < state.length) {
+      return state[index];
+    }
+    return null;
   }
 
   // Method to add a new player
@@ -41,7 +48,7 @@ class ScoresCubit extends Cubit<List<Player>> {
 
   // Reset only the score of a specific player to 0
   void resetPlayerScore(String playerName) {
-    final player = getPlayer(playerName);
+    final player = getPlayerByName(playerName);
     if (player != null && player.score != -1) {
       player.score = 0;
       emit(List.from(state));
@@ -58,7 +65,7 @@ class ScoresCubit extends Cubit<List<Player>> {
 
   // Method to increment a player's score
   void increment(String playerName) {
-    final player = getPlayer(playerName);
+    final player = getPlayerByName(playerName);
 
 
     if (player != null) {
@@ -70,7 +77,7 @@ class ScoresCubit extends Cubit<List<Player>> {
 
   // Method to decrement a player's score
   void decrement(String playerName) {
-    final player = getPlayer(playerName);
+    final player = getPlayerByName(playerName);
 
     if (player != null) {
       player.score--;

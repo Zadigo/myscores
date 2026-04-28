@@ -15,7 +15,7 @@ class IndexPage extends StatelessWidget {
       padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
       itemCount: scoresCubit.state.length,
       itemBuilder: (context, index) {
-        return ScoreCard(player: scoresCubit.state[index],);
+        return ScoreCard(player: scoresCubit.getPlayerByIndex(index),);
       },
     );
   }

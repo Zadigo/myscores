@@ -6,7 +6,7 @@ import 'package:simplescoring/utils/players/change_score_button.dart';
 import 'package:simplescoring/utils/players/score_display.dart';
 
 class ScoreCard extends StatelessWidget {
-  final Player player;
+  final Player? player;
 
   const ScoreCard({
     super.key, 
@@ -44,7 +44,7 @@ class ScoreCard extends StatelessWidget {
                 Flexible(
                   flex: 1,
                   child: ChangeScoreButton(
-                    onPressed: () => scoresCubit.decrement(player.name),
+                    onPressed: () => scoresCubit.decrement(player?.name ?? ''),
                     icon: Icons.remove,
                   ),
                 ),
@@ -52,14 +52,14 @@ class ScoreCard extends StatelessWidget {
                 // Score display
                 Flexible(
                   flex: 2,
-                  child: ScoreDisplay(score: player.score),
+                  child: ScoreDisplay(score: player?.score ?? 0),
                 ),
 
                 // Increment button
                 Flexible(
                   flex: 1,
                   child: ChangeScoreButton(
-                    onPressed: () => scoresCubit.increment(player.name),
+                    onPressed: () => scoresCubit.increment(player?.name ?? ''),
                     icon: Icons.add,
                   ),
                 ),
