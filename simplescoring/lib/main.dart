@@ -38,6 +38,9 @@ class MainApp extends StatelessWidget {
     // Color scheme
     final ColorScheme colorScheme = ColorScheme.fromSeed(
       seedColor: Colors.blue,
+      secondary: Colors.orange,
+      tertiary: Colors.green,
+      error: Colors.red,
       brightness: Brightness.light,
     );
 
@@ -50,12 +53,12 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       title: title,
       home: Scaffold(
-        body: _routes['/rankings']!(context),
+        body: _routes['/home']!(context),
         bottomNavigationBar: BottomNavigationBar(
           items: [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home',
+              label: 'Home'
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.leaderboard),
